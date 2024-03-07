@@ -1,9 +1,7 @@
-import Header from "../Components/Header"
-import Footer from "../Components/Footer"
+
 function Home() {
     return (
         <div>
-            <Header />
             <div className="hero">
                 <section className="hero-content">
                     <h2 className="sr-only">Promoted Content</h2>
@@ -48,7 +46,6 @@ function Home() {
           </p>
         </div>
       </section>
-        <Footer />
                 </div>
 
      

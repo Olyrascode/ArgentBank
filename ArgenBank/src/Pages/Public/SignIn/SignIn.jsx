@@ -1,18 +1,39 @@
 
+import { useState } from 'react';
 import { Link } from 'react-router-dom'; // Add missing import statement for Link
-import Header from "../Components/Header"
-import Footer from "../Components/Footer"
 
 
+// utilisé formik pour créer le formulaire 
 
 function SingIn() {
+
+        const [message, setmessage] = useState("");
+
+    const onSubmit = async (data) => {
+        try{
+            userService.loginuser(data)
+                .then(response =>{
+                    
+                    //dispatch( stoker le token dans le store)
+                    //redirect page user
+                })
+        } catch (error){
+            if(error.response){
+                setmessage(error.response.data)
+            }
+        }
+    }
+
     return (
         <div>
-            <Header />
+
             <main className="main bg-dark">
                 <section className="sign-in-content">
                     <i className="fa fa-user-circle sign-in-icon"></i>
                     <h1>Sign In</h1>
+                    {/* <formik onSubmit={onsubmit}>
+                    // tous les inputs
+                    <formik/> */}
                     <form>
                         <div className="input-wrapper">
                             <label htmlFor="username">Username</label>
@@ -31,7 +52,7 @@ function SingIn() {
                     </form>
                 </section>
             </main>
-            <Footer />
+
         </div>
     )
 }

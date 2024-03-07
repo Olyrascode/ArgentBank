@@ -1,0 +1,14 @@
+//import Utilitaire
+@import "./Sass/Utils/Variables.scss";
+
+//Import de la base
+@import "./Template/Templace.scss";
+
+//import des composents
+@import "./Sass/Components/Header";
+@import "./Sass/Components/Footer";
+
+//Import des Pages
+@import "./Sass/Pages/Home";
+@import "./Sass/Pages/SignIn";
+@import "./Sass/Pages/User";

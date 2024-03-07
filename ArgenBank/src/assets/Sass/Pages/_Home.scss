@@ -1,4 +1,14 @@
 .hero {
+  & .hero-content {
+    & .subtitle {
+    }
+
+    & .text {
+    }
+  }
+}
+
+.hero {
   background-image: url("../src/img/bank-tree.jpeg");
   background-position: 0 -50px;
   background-size: cover;

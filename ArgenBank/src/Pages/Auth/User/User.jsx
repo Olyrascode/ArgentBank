@@ -1,10 +1,23 @@
-import Header from "../Components/Header"
-import Footer from "../Components/Footer"
+
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 function User() {
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(userService.isLogged()){
+      // setinformation()
+    }  else {
+      navigate("/home");
+    }
+  })
+
+
     return (
         <div>
-          <Header /> 
+
           <main className="main bg-dark">
       <div className="user">
         <h1>Welcome back<br />Tony Jarvis!</h1>
@@ -42,7 +55,7 @@ function User() {
         </div>
       </section>
     </main>
-          <Footer /> 
+
         </div>
     )
 }

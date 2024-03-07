@@ -1,23 +1,20 @@
 
-// App.js
-import Home from './React/Pages/Home';
-import SignIn from './React/Pages/SignIn';
-import User from './React/Pages/User';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './main.css';
+import '@/Assets/Css/main.css';
+
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PublicRouter from "@/Pages/Public/Public.router.jsx";
 
 
 function App () {
   return (
-    <Router>
-      <Routes>
-      <Route>
-        <Route path="/" element={<Home />}/>
-        <Route path="SignIn" element={<SignIn />}/>
-        <Route path="User" element={<User />}/>
-      </Route>
-      </Routes>
-    </Router>
+
+    <div className='App'>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<PublicRouter/>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
