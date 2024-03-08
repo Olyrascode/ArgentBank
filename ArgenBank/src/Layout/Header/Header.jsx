@@ -1,10 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
+
+import Logo from "@/Assets/Img/argentBankLogo.png"
 function Header() {
     const location = useLocation();
     return (
         <header>
             <Link to='/'>
-            <img src=".\src\img\argentBankLogo.png" alt="Logo de Argent Bank" />
+            <img src={Logo} alt="Logo de Argent Bank" />
             </Link>
             <div>
                 <i className="fa fa-user-circle"></i>

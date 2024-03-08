@@ -1,7 +1,7 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import { Home, SignIn, User, Error } from '@/Pages/Public/index.js';
+import { Home, SignIn, User, Error } from '@/Pages/Public/index.jsx';
 
 import Layout from '@/Layout/Layout.jsx';
 

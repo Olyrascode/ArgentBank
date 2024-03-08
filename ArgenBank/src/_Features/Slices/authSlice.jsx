@@ -1,6 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { accountService } from "@/_Services/User.service"
 
-import { accountService } from "@/_Services/accountService";
+// import { accountService } from "@/_Services/accountService";
+
+
 
 const initialState = {
     token: accountService.getToken(),

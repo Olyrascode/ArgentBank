@@ -1,5 +1,5 @@
 
-import '@/Assets/Css/main.css';
+import './Assets/Sass/main.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import PublicRouter from "@/Pages/Public/Public.router.jsx";

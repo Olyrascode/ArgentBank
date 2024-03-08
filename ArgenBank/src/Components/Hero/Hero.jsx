@@ -1,10 +1,10 @@
 
-import Background from '@/Assets/Img/bank-tree.jpeg';
+// import Background from '@/Assets/Img/bank-tree.jpeg';
 
 const Hero = () => {
     return (
         <div className="hero">
-            <img src={Background} alt="Background" />
+            {/* <img src={Background} alt="Background" /> */}
             <section className="hero-content">
                 <h2 className="sr-only">Promoted Content</h2>
                 <p className="subtitle">No fees.</p>
