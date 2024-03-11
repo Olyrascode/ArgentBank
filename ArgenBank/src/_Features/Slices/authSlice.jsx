@@ -1,13 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { accountService } from "@/_Services/User.service"
 
-// import { accountService } from "@/_Services/accountService";
+
 
 
 
 const initialState = {
     token: accountService.getToken(),
+    loading: 'idle',
+    error: 'null',
 }
+
+
 
 export const authSlice = createSlice({
     name: "Auth",
