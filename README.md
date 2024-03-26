@@ -34,6 +34,18 @@ mongo --version
 1. Open a terminal window in the cloned project
 1. Run the following commands:
 
+Dans le dossier ArgentBank
+
+```bash
+# Install dependencies
+npm install
+
+#Start local server
+npm run dev
+```
+
+Dans le dossier server
+
 ```bash
 # Install dependencies
 npm install
