@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+
+  & a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #2c3e50;
+
+    & img {
+      max-width: 100%;
+      width: 200px;
+    }
+  }
+
+  div {
+    & .fa {
+      margin-right: 5px;
+    }
+  }
+}
+.main-nav-item-user {
+  margin-right: 20px;
+}
