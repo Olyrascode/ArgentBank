@@ -1,7 +1,7 @@
 
-import iconChat from '../Assets/Img/icon-chat.png';
-import moneyIcon from '../Assets/Img/icon-money.png';
-import securitydIcon from '../Assets/Img/icon-security.png';
+import iconChat from '../Assets/Img/icon-chat.webp';
+import moneyIcon from '../Assets/Img/icon-money.webp';
+import securitydIcon from '../Assets/Img/icon-security.webp';
 import Feature from '../Components/Feature';
 
 

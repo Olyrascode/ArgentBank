@@ -5,6 +5,7 @@
   };
   
   // reducer authentification
+  //en fonction des cas d'actions le reducers retourne un nouveau state
   function authReducer(state = initialState, action) {
     switch (action.type) {
       // si 'USER_LOGIN' le token se met à jour avec la payload de l'action
