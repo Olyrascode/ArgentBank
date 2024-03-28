@@ -1,9 +1,9 @@
-swagger: '2.0'
+swagger: "2.0"
 info:
   title: Bank Argent API documentation
   description: Contains all available API endpoints in this codebase
-  version: '1.0.0'
-  termsOfService: 'http://swagger.io/terms/'
+  version: "1.0.0"
+  termsOfService: "http://swagger.io/terms/"
 host: localhost:3001
 basePath: /api/v1
 schemes:
@@ -21,17 +21,17 @@ paths:
           description: Login Payload
           required: true
           schema:
-            $ref: '#/definitions/Login'
+            $ref: "#/definitions/Login"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Login Successfully
           schema:
-            $ref: '#/definitions/LoginResponse'
-        '400':
+            $ref: "#/definitions/LoginResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
   /user/signup:
     post:
@@ -45,36 +45,42 @@ paths:
           description: Signup Payload
           required: true
           schema:
-            $ref: '#/definitions/User'
+            $ref: "#/definitions/User"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: Signup Successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
+            $ref: "#/definitions/ApiResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
   /user/profile:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
+      parameters:
+        - type: string
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
       responses:
-        '200':
+        "200":
           description: User profile retrieved successully
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
+            $ref: "#/definitions/ApiResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
           description: Internal Server Error
     put:
       security:
@@ -84,22 +90,152 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
+        - type: string
+          in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
         - in: body
           name: body
           description: Update user profile attributes
           required: true
           schema:
-            $ref: '#/definitions/UserProfile'
+            $ref: "#/definitions/UserProfile"
       produces:
         - application/json
       responses:
-        '200':
+        "200":
           description: User profile retrieved successully
           schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
+            $ref: "#/definitions/ApiResponse"
+        "400":
           description: Invalid Fields
-        '500':
+        "500":
+          description: Internal Server Error
+  /user/accounts/{accountId}:
+    get:
+      tags:
+        - User Transactions
+      summary: User's Account
+      description: API for getting all accounts
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: Transaction retrieved successully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Bad request. User ID must be an integer and larger than 0.
+        "500":
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{mounthId}:
+    get:
+      tags:
+        - User Transactions
+      summary: Transactions
+      description: API for getting all transactions for the current month
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+      responses:
+        "200":
+          description: Transaction retrieved successully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Bad request. User ID must be an integer and larger than 0.
+        "500":
+          description: Internal Server Error
+  /user/accounts/{accountId}/transactions/{transactionsId}:
+    get:
+      tags:
+        - User Transactions
+      summary: Transaction details
+      description: API for getting a single transaction details
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+        - in: path
+          name: transactionsId
+          description: Transaction's ID
+          required: true
+          type: integer
+      responses:
+        "200":
+          description: Transaction retrieved successully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Bad request. User ID/ transaction ID must be an integer and larger than 0.
+        "500":
+          description: Internal Server Error
+
+  /user/accounts/{accountId}/transactions/{transactionsId}/notes:
+    patch:
+      tags:
+        - User Transactions
+      summary: Update an existing transaction (notes)
+      description: API for updating transaction's notes
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          type: string
+          required: true
+        - in: path
+          name: accountId
+          description: User's account ID
+          type: integer
+          required: true
+        - in: path
+          name: transactionsId
+          description: Transaction's ID
+          required: true
+          type: integer
+        - in: body
+          name: body
+          required: true
+          description: Update transaction's informations
+          schema:
+            $ref: "#/definitions/TransactionsUpdateNotes"
+      responses:
+        "200":
+          description: Transaction updated successully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Bad request. User ID/ transaction ID must be an integer and larger than 0.
+        "500":
           description: Internal Server Error
 securityDefinitions:
   Bearer:
@@ -121,9 +257,6 @@ definitions:
       lastName:
         type: string
         description: user last name
-      userName:
-        type: string
-        description: user public name
   Login:
     properties:
       email:
@@ -154,5 +287,33 @@ definitions:
   UserProfile:
     type: object
     properties:
-      userName:
+      firstName:
+        type: string
+      lastName:
+        type: string
+  Transactions:
+    type: object
+    properties:
+      transactionsId:
+        type: integer
+        format: int64
+      date:
+        type: string
+      description:
+        type: string
+      amount:
+        type: number
+      currency:
+        type: string
+      type:
+        type: string
+      category:
+        type: string
+      notes:
+        type: string
+
+  TransactionsUpdateNotes:
+    type: object
+    properties:
+      notes:
         type: string
