@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 // Importation des composants nécessaires
 import UpdateUsername from "../Components/UpdateUsernameForm";
 import Account from "../Components/Account";
+import { Navigate } from "react-router-dom";
 
 function UserProfilePage() {
   // Récupération de la fonction dispatch de Redux, du token d'authentification et des informations de l'utilisateur
@@ -37,7 +38,7 @@ function UserProfilePage() {
 
       if (!response.ok) {
         throw new Error(`An error has occurred: ${response.status}`);
-      }
+      }''
 
       const data = await response.json();
       // Mise à jour du state Redux avec les informations de l'utilisateur
@@ -47,7 +48,10 @@ function UserProfilePage() {
 
     fetchData();
   }, [token, dispatch]);
-
+  
+  if (!token) {
+    return <Navigate to="/sign-in" />; // Redirige vers la page de connexion si le token n'est pas présent
+  }
   // Rendu du composant : affichage des informations de l'utilisateur et des comptes et un formulaire pour mettre à jour le nom d'utilisateur
   return (
     <div>
@@ -58,14 +62,14 @@ function UserProfilePage() {
             <br />
             {data ? `${data.firstName} ${data.lastName}` : ""} !
           </h1>
+        </div>
+        {isEditing && <UpdateUsername setIsEditing={setIsEditing} firstname={data.firstName} lastname={data.lastName} />}
           <button
             className="edit-button"
             onClick={() => setIsEditing(!isEditing)}
           >
             {isEditing ? "Cancel" : "Edit Name"}
           </button>
-        </div>
-        {isEditing && <UpdateUsername setIsEditing={setIsEditing} />}
         <h2 className="sr-only">Accounts</h2>
         <Account
           title="Argent Bank Checking (x8349)"

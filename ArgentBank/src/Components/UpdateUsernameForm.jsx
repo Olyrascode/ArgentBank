@@ -29,7 +29,7 @@ async function updateUserProfile(username, dispatch) {
   }
 }
 
-function UpdateUsernameForm({ setIsEditing }) {
+function UpdateUsernameForm({ setIsEditing, firstname, lastname }) {
   const [username, setUsername] = useState("");
   const dispatch = useDispatch();
 
@@ -41,22 +41,47 @@ function UpdateUsernameForm({ setIsEditing }) {
     updateUserProfile(username, dispatch);
     setIsEditing(false);
   };
+  
   // formulaire update username
   return (
     <form onSubmit={handleSubmit}>
       <label className="formTitle">
-        New user name :
+        <label>
+       User name :
         <input
           id="username"
           type="text"
           value={username}
           className="inputForm"
           onChange={(e) => setUsername(e.target.value)}
+          />
+          </label>
+        <label>
+        First name :
+        <input
+        id="firstname"
+        type="text"
+        value={firstname}
+        className="inputForm cantChange"
+        readOnly
         />
+        </label>
+        <label>
+        Last name :
+           <input
+        id="lastname"
+        type="text"
+        value={lastname}
+        className="inputForm cantChange"
+        readOnly
+        />
+        </label>
+         
       </label>
       <button type="submit" className="submitForm">
-        Submit
+        Save
       </button>
+      
     </form>
   );
 }
