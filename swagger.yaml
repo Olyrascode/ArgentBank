@@ -143,7 +143,7 @@ paths:
       tags:
         - User Transactions
       summary: Transactions
-      description: API for getting all transactions for the current month
+      description: API for getting all transactions by account
       parameters:
         - in: header
           name: Authorization
@@ -193,44 +193,6 @@ paths:
             $ref: "#/definitions/Transactions"
         "400":
           description: Bad request. User ID/ transaction ID must be an integer and larger than 0.
-        "500":
-          description: Internal Server Error
-    put:
-      tags:
-        - User Transactions
-      summary: Update transaction details
-      description: API for updating details of a single transaction
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          type: string
-          required: true
-        - in: path
-          name: accountId
-          description: User's account ID
-          type: integer
-          required: true
-        - in: path
-          name: transactionsId
-          description: Transaction's ID
-          required: true
-          type: integer
-        - in: body
-          name: body
-          description: Updated transaction details
-          required: true
-          schema:
-            $ref: "#/definitions/TransactionUpdate"
-      responses:
-        "200":
-          description: Transaction updated successfully
-        "400":
-          description: Invalid request
-        "401":
-          description: Authorization information is missing or invalid
-        "404":
-          description: Transaction not found
         "500":
           description: Internal Server Error
   /user/accounts/{accountId}/transactions/month/{month}:
@@ -415,6 +377,10 @@ definitions:
       currency:
         type: string
       type:
+        type: string
+      notes:
+        type: string
+      category:
         type: string
   TransactionUpdate:
     type: object
